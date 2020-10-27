@@ -2,10 +2,11 @@
     "series": [
         {
             "id": 1,
+            "status": "watching",
             "name": "Cool series",
             "seasons": [
                 {
-                    "id": "1",
+                    "id": 1,
                     "episodes": [
                         {
                             "id": 1,
@@ -14,7 +15,7 @@
                     ]
                 },
                 {
-                    "id": "2",
+                    "id": 2,
                     "episodes": [
                         {
                             "id": 1,
@@ -26,10 +27,11 @@
         },
         {
             "id": 2,
+            "status": "watching",
             "name": "Cool series 2",
             "seasons": [
                 {
-                    "id": "1",
+                    "id": 1,
                     "episodes": [
                         {
                             "id": 1,
@@ -38,7 +40,7 @@
                     ]
                 },
                 {
-                    "id": "2",
+                    "id": 2,
                     "episodes": [
                         {
                             "id": 1,
@@ -50,6 +52,7 @@
         },
         {
             "id": 3,
+            "status": "finished",
             "name": "Cool series 3",
             "seasons": [
                 {
@@ -65,10 +68,11 @@
         },
         {
             "id": 4,
+            "status": "wishlist",
             "name": "Cool series 4",
             "seasons": [
                 {
-                    "id": "1",
+                    "id": 1,
                     "episodes": [
                         {
                             "id": 1,
