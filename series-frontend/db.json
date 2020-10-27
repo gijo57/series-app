@@ -1,0 +1,82 @@
+{
+    "series": [
+        {
+            "id": 1,
+            "name": "Cool series",
+            "seasons": [
+                {
+                    "id": "1",
+                    "episodes": [
+                        {
+                            "id": 1,
+                            "name": "Episode 1"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "episodes": [
+                        {
+                            "id": 1,
+                            "name": "Episode 1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Cool series 2",
+            "seasons": [
+                {
+                    "id": "1",
+                    "episodes": [
+                        {
+                            "id": 1,
+                            "name": "Episode 1"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "episodes": [
+                        {
+                            "id": 1,
+                            "name": "Episode 1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Cool series 3",
+            "seasons": [
+                {
+                    "id": "1",
+                    "episodes": [
+                        {
+                            "id": 1,
+                            "name": "Episode 1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Cool series 4",
+            "seasons": [
+                {
+                    "id": "1",
+                    "episodes": [
+                        {
+                            "id": 1,
+                            "name": "Episode 1"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
