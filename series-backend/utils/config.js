@@ -6,5 +6,6 @@ let API_KEY = process.env.API_KEY
 
 module.exports = {
     MONGODB_URI,
-    PORT
+    PORT,
+    API_KEY
   }
