@@ -11,20 +11,20 @@ import {
 } from "react-router-dom"
 
 const App = () => {
-  const [series, setSeries] = useState([])
+  // const [series, setSeries] = useState([])
 
-  useEffect(() => {
-      seriesService.getSeries().then(res => {
-          setSeries(res)
-      })
-  },[])
+  // useEffect(() => {
+  //     seriesService.getSeries().then(res => {
+  //         setSeries(res)
+  //     })
+  // },[])
 
   return (
     <div className='app'>
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/series/finished/:id">
+          {/* <Route path="/series/finished/:id">
             <Series series={series} className='seriesList'/>
           </Route>
           <Route path="/series/watching/:id">
@@ -41,7 +41,7 @@ const App = () => {
           </Route>
           <Route path="/series/wishlist">
             <SeriesList status='wishlist' series={series} className='seriesList'/>
-          </Route>
+          </Route> */}
           <Route path="/series">
             <SeriesForm />
           </Route>
