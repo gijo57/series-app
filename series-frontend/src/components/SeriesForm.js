@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import seriesService from '../services/series'
+import Series from '../components/Series'
 
 const SeriesForm = () => {
     const [series, setSeries] = useState(null)
@@ -8,14 +9,13 @@ const SeriesForm = () => {
     const handleTitleChange = (event) => setTitle(event.target.value)
 
     const getSeries = async (event) => {
-        console.log('test')
         event.preventDefault()
-        const data = await seriesService.getSeries(title)
+        const data = await seriesService.fetchSeries(title)
         setSeries(data)
         setTitle('')
     }
 
-    if (!series) {
+    if (!series || series === null) {
         return (
             <div>
                 <form id='form' onSubmit={getSeries}>
@@ -23,8 +23,9 @@ const SeriesForm = () => {
                     <button type='submit'>Search</button>
                 </form>
             </div>
-        )        
+        )
     } else {
+        const results = series.results.map(s => <Series key={s.id} series={s}/>)
         return (
             <div>
                 <form id='form' onSubmit={getSeries}>
@@ -32,9 +33,9 @@ const SeriesForm = () => {
                     <button type='submit'>Search</button>
                 </form>
                 <div>
-                    {series.results.length > 10
+                    {series.results.length > 30
                         ? <h2>Too many results, please define your search...</h2>
-                        : <h2>{series.results[0].original_name}</h2>
+                        : <div className='seriesList'>{results}</div>
                     }
                 </div>
             </div>

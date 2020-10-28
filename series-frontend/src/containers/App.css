@@ -2,11 +2,10 @@
     color:darkred;
 }
 
-.seriesList {
-    border: 2px solid black;
-    display: flex;
-    justify-content: flex-start;
-}
+  .seriesList {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
 
  /* Navbar container */
  .navbar {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import seriesService from '../services/series'
 import SeriesList from '../components/SeriesList'
 import Navbar from '../components/Navbar'
 import Series from '../components/Series'
@@ -11,37 +10,30 @@ import {
 } from "react-router-dom"
 
 const App = () => {
-  // const [series, setSeries] = useState([])
-
-  // useEffect(() => {
-  //     seriesService.getSeries().then(res => {
-  //         setSeries(res)
-  //     })
-  // },[])
 
   return (
     <div className='app'>
       <Router>
         <Navbar />
         <Switch>
-          {/* <Route path="/series/finished/:id">
-            <Series series={series} className='seriesList'/>
+          <Route path="/series/finished/:id">
+            <Series className='seriesList'/>
           </Route>
           <Route path="/series/watching/:id">
-            <Series series={series} className='seriesList'/>
+            <Series className='seriesList'/>
           </Route>
           <Route path="/series/wishlist/:id">
-            <Series series={series} className='seriesList'/>
+            <Series className='seriesList'/>
           </Route>
           <Route path="/series/finished">
-            <SeriesList status='finished' series={series} className='seriesList'/>
+            <SeriesList status='finished' className='seriesList'/>
           </Route>
           <Route path="/series/watching">
-            <SeriesList status='watching' series={series} className='seriesList'/>
+            <SeriesList status='watching' className='seriesList'/>
           </Route>
           <Route path="/series/wishlist">
-            <SeriesList status='wishlist' series={series} className='seriesList'/>
-          </Route> */}
+            <SeriesList status='wishlist' className='seriesList'/>
+          </Route>
           <Route path="/series">
             <SeriesForm />
           </Route>

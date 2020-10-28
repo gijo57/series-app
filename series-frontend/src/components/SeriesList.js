@@ -11,8 +11,7 @@ box-shadow: 0 0 20px rgba(0, 0, 0, .05), 0 0px 40px rgba(0, 0, 0, .08);
 border-radius: 5px;
 `
 
-const SeriesList = ({ status, series, className }) => {
-    const filteredSeries = series.filter(s => s.status === status)
+const SeriesList = ({ status, className }) => {
     let title = ''
     if (status === 'finished') {
         title = 'Series you\'ve finished watching'
@@ -26,13 +25,7 @@ const SeriesList = ({ status, series, className }) => {
         <div>
             <h1>{title}</h1>
             <div className={className}>            
-                {filteredSeries.map(s => {
-                    return <Link key={s.name} to={`/series/${status}/${s.id}`}>
-                                <StyledSeries>
-                                    <h2>{s.name}</h2>
-                                </StyledSeries>     
-                            </Link>
-                })}
+                <h1>{status}</h1>
             </div>
         </div>
     )

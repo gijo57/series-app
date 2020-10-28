@@ -2,7 +2,7 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3001/api/series'
 
-const getSeries = async (title) => {
+const fetchSeries = async (title) => {
     const body = {
         title
     }
@@ -11,5 +11,5 @@ const getSeries = async (title) => {
 }
 
 export default {
-    getSeries,
+    fetchSeries,
 }
