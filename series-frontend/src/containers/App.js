@@ -3,6 +3,7 @@ import SeriesList from '../components/SeriesList'
 import Navbar from '../components/Navbar'
 import Series from '../components/Series'
 import SeriesForm from '../components/SeriesForm'
+import seriesService from '../services/series'
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -10,6 +11,16 @@ import {
 } from "react-router-dom"
 
 const App = () => {
+  const [series, setSeries] = useState(null)
+
+  useEffect(() => {
+      getSeries()
+  },[])
+
+  const getSeries = async () => {
+    const data = await seriesService.fetchList()
+    setSeries(data)
+  }
 
   return (
     <div className='app'>
@@ -26,13 +37,13 @@ const App = () => {
             <Series className='seriesList'/>
           </Route>
           <Route path="/series/finished">
-            <SeriesList status='finished' className='seriesList'/>
+            <SeriesList series={series} status='finished'/>
           </Route>
           <Route path="/series/watching">
-            <SeriesList status='watching' className='seriesList'/>
+            <SeriesList series={series} status='watching'/>
           </Route>
           <Route path="/series/wishlist">
-            <SeriesList status='wishlist' className='seriesList'/>
+            <SeriesList series={series} status='wishlist'/>
           </Route>
           <Route path="/series">
             <SeriesForm />

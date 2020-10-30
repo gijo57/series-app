@@ -2,9 +2,9 @@ const config = require('./utils/config')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-
 const mongoose = require('mongoose')
 const seriesRouter = require('./controllers/series')
+mongoose.set('useFindAndModify', false);
 
 mongoose
     .connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true})

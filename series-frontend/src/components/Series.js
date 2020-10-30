@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import seriesService from '../services/series'
 
 const StyledSeries = styled.div`
 padding: 10px;
@@ -14,6 +15,17 @@ background-size: cover;
 `
 
 const Series = ({ series }) => {
+
+    const addToList = (event) => {
+        event.preventDefault()
+        seriesService.addToList(event.target.name, series)
+    }
+
+    const removeFromList = (event) => {
+        event.preventDefault()
+        seriesService.removeFromList(series.id)
+    }
+
     const posterUrl = 'https://image.tmdb.org/t/p/'
     const sizeUrl = 'w500'
     const img = series.backdrop_path ? series.backdrop_path : series.poster_path
@@ -24,9 +36,10 @@ const Series = ({ series }) => {
     return (
         <StyledSeries background={background}>
             <h2>{series.name}</h2>
-            <button>Wishlist</button>
-            <button>Watching</button>
-            <button>Finished</button>
+            <button name='wishlist' onClick={addToList}>Wishlist</button>
+            <button name='watching' onClick={addToList}>Watching</button>
+            <button name='finished' onClick={addToList}>Finished</button>
+            <button name='remove' onClick={removeFromList}>Remove</button>
         </StyledSeries>
     )
 }

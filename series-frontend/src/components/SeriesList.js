@@ -1,17 +1,13 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import Series from '../components/Series'
 
-const StyledSeries = styled.div`
-padding: 10px;
-margin: 10px auto 0;
-width: 300px;
-font-family: Roboto;
-box-shadow: 0 0 20px rgba(0, 0, 0, .05), 0 0px 40px rgba(0, 0, 0, .08);
-border-radius: 5px;
-`
-
-const SeriesList = ({ status, className }) => {
+const SeriesList = ({ series, status }) => {
+    let filteredSeries = []
+    
+    if(series) {
+        filteredSeries = series.filter(s => s.list === status)
+    }
+    
     let title = ''
     if (status === 'finished') {
         title = 'Series you\'ve finished watching'
@@ -21,14 +17,16 @@ const SeriesList = ({ status, className }) => {
         title = 'Series you want to see in the future'
     }
 
-    return (
-        <div>
-            <h1>{title}</h1>
-            <div className={className}>            
-                <h1>{status}</h1>
+    if (!series) {
+        return null
+    } else {
+        return (
+            <div>
+                <h1>{title}</h1>
+                <div className='seriesList'>{filteredSeries.map(s => <Series key={s.id} series={s}/>)}</div>       
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default SeriesList
