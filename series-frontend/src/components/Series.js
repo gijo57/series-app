@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import seriesService from '../services/series'
 
 const StyledSeries = styled.div`
@@ -14,16 +15,9 @@ background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), ${p
 background-size: cover;
 `
 
-const Series = ({ series }) => {
-
-    const addToList = (event) => {
-        event.preventDefault()
-        seriesService.addToList(event.target.name, series)
-    }
-
-    const removeFromList = (event) => {
-        event.preventDefault()
-        seriesService.removeFromList(series.id)
+const Series = ({ series, remove, get, status }) => {
+    if (!series || series === undefined) {
+        return null
     }
 
     const posterUrl = 'https://image.tmdb.org/t/p/'
@@ -33,13 +27,23 @@ const Series = ({ series }) => {
         background: `url(${posterUrl}${sizeUrl}${img})`
     }
 
+    const addToList = (event) => {
+        event.preventDefault()
+        seriesService.addToList(event.target.name, series)
+        if(status && status !== undefined) {
+            get()
+        }
+    }
+
     return (
         <StyledSeries background={background}>
-            <h2>{series.name}</h2>
+            <h2><Link style={{ textDecoration: 'none', color: 'maroon'}} to={`/series/id/${series.id}`}>{series.name}</Link></h2>
             <button name='wishlist' onClick={addToList}>Wishlist</button>
             <button name='watching' onClick={addToList}>Watching</button>
             <button name='finished' onClick={addToList}>Finished</button>
-            <button name='remove' onClick={removeFromList}>Remove</button>
+            {status || status !== undefined ?
+            <button name='remove' onClick={() => remove(series)}>Remove</button> :
+            null}
         </StyledSeries>
     )
 }

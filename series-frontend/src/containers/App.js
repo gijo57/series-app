@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import SeriesList from '../components/SeriesList'
 import Navbar from '../components/Navbar'
-import Series from '../components/Series'
+import SeriesPage from '../components/SeriesPage'
 import SeriesForm from '../components/SeriesForm'
-import seriesService from '../services/series'
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -11,23 +10,13 @@ import {
 } from "react-router-dom"
 
 const App = () => {
-  const [series, setSeries] = useState(null)
-
-  useEffect(() => {
-      getSeries()
-  },[])
-
-  const getSeries = async () => {
-    const data = await seriesService.fetchList()
-    setSeries(data)
-  }
 
   return (
     <div className='app'>
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/series/finished/:id">
+          {/* <Route path='/series/finished/:id'>
             <Series className='seriesList'/>
           </Route>
           <Route path="/series/watching/:id">
@@ -35,18 +24,24 @@ const App = () => {
           </Route>
           <Route path="/series/wishlist/:id">
             <Series className='seriesList'/>
-          </Route>
+          </Route> */}
           <Route path="/series/finished">
-            <SeriesList series={series} status='finished'/>
+            <SeriesList status='finished'/>
           </Route>
           <Route path="/series/watching">
-            <SeriesList series={series} status='watching'/>
+            <SeriesList status='watching'/>
           </Route>
           <Route path="/series/wishlist">
-            <SeriesList series={series} status='wishlist'/>
+            <SeriesList status='wishlist'/>
           </Route>
-          <Route path="/series">
+          <Route path="/series/id/:id">
+            <SeriesPage />
+          </Route>
+          <Route path="/series/browse">
             <SeriesForm />
+          </Route>
+          <Route path="/">
+            <h1>Hello World!</h1>
           </Route>
         </Switch>        
       </Router>

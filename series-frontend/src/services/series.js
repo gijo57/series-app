@@ -8,6 +8,12 @@ const fetchSeries = async (title) => {
     return res.data
 }
 
+const fetchOne = async (id) => {
+    const url = `${baseUrl}/api/s/${id}`
+    const res = await axios.get(url)
+    return res.data
+}
+
 const fetchList = async () => {
     const url = `${baseUrl}/list`
     const response = await axios.get(url)
@@ -32,6 +38,7 @@ const removeFromList = async (id) => {
 
 export default {
     fetchSeries,
+    fetchOne,
     addToList,
     fetchList,
     removeFromList
