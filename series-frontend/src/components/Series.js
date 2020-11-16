@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import seriesService from '../services/series'
 
 const StyledSeries = styled.div`
 padding: 10px;
@@ -15,7 +14,7 @@ background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), ${p
 background-size: cover;
 `
 
-const Series = ({ series, remove, get, status }) => {
+const Series = ({ series, remove, status, add }) => {
     if (!series || series === undefined) {
         return null
     }
@@ -27,20 +26,12 @@ const Series = ({ series, remove, get, status }) => {
         background: `url(${posterUrl}${sizeUrl}${img})`
     }
 
-    const addToList = (event) => {
-        event.preventDefault()
-        seriesService.addToList(event.target.name, series)
-        if(status && status !== undefined) {
-            get()
-        }
-    }
-
     return (
         <StyledSeries background={background}>
             <h2><Link style={{ textDecoration: 'none', color: 'maroon'}} to={`/series/id/${series.id}`}>{series.name}</Link></h2>
-            <button name='wishlist' onClick={addToList}>Wishlist</button>
-            <button name='watching' onClick={addToList}>Watching</button>
-            <button name='finished' onClick={addToList}>Finished</button>
+            <button name='wishlist' onClick={(event) => add(event.target.name, series)}>Wishlist</button>
+            <button name='watching' onClick={(event) => add(event.target.name, series)}>Watching</button>
+            <button name='finished' onClick={(event) => add(event.target.name, series)}>Finished</button>
             {status || status !== undefined ?
             <button name='remove' onClick={() => remove(series)}>Remove</button> :
             null}

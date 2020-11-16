@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import seriesService from '../services/series'
 import Series from '../components/Series'
 
-const SeriesForm = () => {
+const SeriesForm = ({ add }) => {
     const [series, setSeries] = useState(null)
     const [title, setTitle] = useState('')
 
@@ -25,7 +25,7 @@ const SeriesForm = () => {
             </div>
         )
     } else {
-        const results = series.results.map(s => <Series key={s.id} series={s}/>)
+        const results = series.results.map(s => <Series key={s.id} series={s} add={add} />)
         return (
             <div>
                 <form id='form' onSubmit={getSeries}>

@@ -34,7 +34,6 @@ seriesRouter.get('/list', async (req, res) => {
 
 seriesRouter.post('/list', async (req, res) => {
     const { series, list } = req.body;
-
     const listSeries = {
         original_name: series.original_name,
         genre_ids: series.genre_ids,

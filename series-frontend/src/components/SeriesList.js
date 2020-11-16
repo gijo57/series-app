@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import seriesService from '../services/series'
+import React, { useEffect } from 'react'
 import Series from '../components/Series'
 
-const SeriesList = ({ status }) => {
-    const [series, setSeries] = useState([])
-
+const SeriesList = ({ status, get, series, add, remove }) => {
     useEffect(() => {
-        getSeries()
+        get(status)
     },[status])
-
-    const getSeries = async () => {
-        const data = await seriesService.fetchList()
-        const series = await data.filter(s => s.list === status)
-        setSeries(series)
-    }
-
-    const removeFromList = (s) => {
-        const updatedSeries = series.filter(series => series.id !== s.id)
-        setSeries(updatedSeries)
-        seriesService.removeFromList(s.id)
-    }
 
     let title = ''
     if (status === 'finished') {
@@ -40,8 +25,9 @@ const SeriesList = ({ status }) => {
                     <Series key={s.id}
                             status={status}
                             series={s}
-                            remove={removeFromList}
-                            get={getSeries}/>)}
+                            add={add}
+                            remove={remove}
+                            get={get}/>)}
                 </div>       
             </div>
         )
