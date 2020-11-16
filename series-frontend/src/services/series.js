@@ -20,6 +20,12 @@ const fetchList = async () => {
     return response.data
 }
 
+const fetchSeason = async (seriesId, seasonId) => {
+    const url = `${baseUrl}/api/s/${seriesId}/season/${seasonId}`
+    const res = await axios.get(url)
+    return res.data
+}
+
 const addToList = async (list, series) => {
     const url = `${baseUrl}/list`
     const body = {
@@ -39,6 +45,7 @@ const removeFromList = async (id) => {
 export default {
     fetchSeries,
     fetchOne,
+    fetchSeason,
     addToList,
     fetchList,
     removeFromList

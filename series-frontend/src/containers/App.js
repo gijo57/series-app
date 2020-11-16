@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SeriesList from '../components/SeriesList'
 import Navbar from '../components/Navbar'
 import SeriesPage from '../components/SeriesPage'
+import SeasonPage from '../components/SeasonPage'
 import SeriesForm from '../components/SeriesForm'
 import seriesService from '../services/series'
 import './App.css'
@@ -54,7 +55,10 @@ const App = () => {
             <SeriesList status='wishlist' get={getSeries} series={series} add={addToList} remove={removeFromList} />
           </Route>
           <Route path="/series/id/:id">
-            <SeriesPage userSeries={series} add={addToList} remove={removeFromList} />
+            <SeriesPage add={addToList} />
+          </Route>
+          <Route path="/series/:id/season/:season_number">
+            <SeasonPage userSeries={series} />
           </Route>
           <Route path="/series/browse">
             <SeriesForm add={addToList} />

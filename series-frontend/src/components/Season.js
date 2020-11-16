@@ -14,7 +14,7 @@ background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), ${p
 background-size: cover;
 `
 
-const Season = ({ season }) => {
+const Season = ({ season, seriesId }) => {
     if (!season || season === undefined) {
         return null
     }
@@ -28,7 +28,7 @@ const Season = ({ season }) => {
 
     return (
         <StyledSeason background={background}>
-            <h2><Link style={{ textDecoration: 'none', color: 'maroon' }} to={`/series/id/${season.id}`}>{season.name}</Link></h2>
+            <h2><Link style={{ textDecoration: 'none', color: 'maroon' }} to={`/series/${seriesId}/season/${season.season_number}`}>{season.name}</Link></h2>
         </StyledSeason>
     )
 }

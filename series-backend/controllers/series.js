@@ -13,6 +13,10 @@ const fetchOne = (id) => {
     return axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=en-US`)
 }
 
+const fetchSeason = (seriesId, seasonId) => {
+    return axios.get(`https://api.themoviedb.org/3/tv/${seriesId}/season/${seasonId}?api_key=${apiKey}&language=en-US`)
+}
+
 seriesRouter.get('/api/:title', async (req, res) => {
     const title = req.params.title
     const response = await fetchSeries(title)
@@ -30,6 +34,14 @@ seriesRouter.get('/api/s/:id', async (req, res) => {
 seriesRouter.get('/list', async (req, res) => {
     const series = await Series.find({})
     res.json(series)
+})
+
+seriesRouter.get('/api/s/:seriesId/season/:seasonId', async (req, res) =>{
+    const seriesId = req.params.seriesId
+    const seasonId = req.params.seasonId
+    const response = await fetchSeason(seriesId, seasonId)
+    const data = response.data
+    res.json(data)
 })
 
 seriesRouter.post('/list', async (req, res) => {

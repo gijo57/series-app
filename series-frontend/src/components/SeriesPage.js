@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import seriesService from '../services/series'
 import Season from './Season'
 
-const SeriesPage = ({ add, remove, userSeries }) => {
+const SeriesPage = ({ add }) => {
     const [series, setSeries] = useState({})
     const id = useParams().id
 
@@ -25,12 +25,10 @@ const SeriesPage = ({ add, remove, userSeries }) => {
             <button name='wishlist' onClick={(event) => add(event.target.name, series)}>Wishlist</button>
             <button name='watching' onClick={(event) => add(event.target.name, series)}>Watching</button>
             <button name='finished' onClick={(event) => add(event.target.name, series)}>Finished</button>
-            {userSeries.some(s => s.name === series.name) ?
-            <button name='remove' onClick={() => remove(series)}>Remove</button> :
-            null}
             <h2>Seasons</h2>
             <div className='seriesList'>
-                {series.seasons.map(s => <Season season={s} 
+                {series.seasons.map(s => <Season seriesId={series.id}
+                                                 season={s}
                                                  key={s.name}/>)}
             </div>
         </div>
