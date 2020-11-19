@@ -36,15 +36,6 @@ const App = () => {
       <Router>
         <Navbar />
         <Switch>
-          {/* <Route path='/series/finished/:id'>
-            <Series className='seriesList'/>
-          </Route>
-          <Route path="/series/watching/:id">
-            <Series className='seriesList'/>
-          </Route>
-          <Route path="/series/wishlist/:id">
-            <Series className='seriesList'/>
-          </Route> */}
           <Route path="/series/finished">
             <SeriesList status='finished' get={getSeries} series={series} add={addToList} remove={removeFromList} />
           </Route>
