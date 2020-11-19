@@ -29,9 +29,15 @@ const Series = ({ series, remove, status, add }) => {
     return (
         <StyledSeries background={background}>
             <h2><Link style={{ textDecoration: 'none', color: 'maroon'}} to={`/series/id/${series.id}`}>{series.name}</Link></h2>
-            <button name='wishlist' onClick={(event) => add(event.target.name, series)}>Wishlist</button>
-            <button name='watching' onClick={(event) => add(event.target.name, series)}>Watching</button>
-            <button name='finished' onClick={(event) => add(event.target.name, series)}>Finished</button>
+            {status !== 'wishlist' ?
+            <button name='wishlist' onClick={(event) => add(event.target.name, series)}>Wishlist</button> :
+            null}
+            {status !== 'watching' ?
+            <button name='watching' onClick={(event) => add(event.target.name, series)}>Watching</button> :
+            null}
+            {status !== 'finished' ?
+            <button name='finished' onClick={(event) => add(event.target.name, series)}>Finished</button> :
+            null}          
             {status || status !== undefined ?
             <button name='remove' onClick={() => remove(series)}>Remove</button> :
             null}

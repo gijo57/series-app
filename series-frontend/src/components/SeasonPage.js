@@ -15,10 +15,10 @@ const SeasonPage = () => {
         getSeason()
     },[seasonNumber, seriesId])
 
-    if (!season) {
+    if (!season.episodes) {
         return null
     }
-    console.log(season)
+
     return (
         <div>
             <h1>{season.name}</h1>
