@@ -31,8 +31,10 @@ seriesRouter.get('/api/s/:id', async (req, res) => {
     res.json(data)
 })
 
-seriesRouter.get('/list', async (req, res) => {
-    const series = await Series.find({})
+seriesRouter.get('/list/:status', async (req, res) => {
+    const status = req.params.status
+    const series = await Series.find({ list: status})
+    console.log(series)
     res.json(series)
 })
 

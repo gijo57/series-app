@@ -15,9 +15,10 @@ const App = () => {
   const [series, setSeries] = useState([])
 
   const getSeries = async (status) => {
-    const data = await seriesService.fetchList()
-    const series = await data.filter(s => s.list === status)
-    setSeries(series)
+    console.log(status)
+    const data = await seriesService.fetchList(status)
+    console.log(data)
+    setSeries(data)
   }
 
   const addToList = (status, series) => {
