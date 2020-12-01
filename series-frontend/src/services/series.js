@@ -14,8 +14,8 @@ const fetchOne = async (id) => {
     return res.data
 }
 
-const fetchList = async (status) => {
-    const url = `${baseUrl}/list/${status}`
+const fetchList = async () => {
+    const url = `${baseUrl}/list`
     const response = await axios.get(url)
     return response.data
 }

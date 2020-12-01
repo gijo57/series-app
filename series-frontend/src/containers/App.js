@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SeriesList from '../components/SeriesList'
 import Navbar from '../components/Navbar'
 import SeriesPage from '../components/SeriesPage'
@@ -14,16 +14,24 @@ import {
 const App = () => {
   const [series, setSeries] = useState([])
 
-  const getSeries = async (status) => {
-    console.log(status)
-    const data = await seriesService.fetchList(status)
-    console.log(data)
-    setSeries(data)
+  useEffect(() => {
+    const fetchSeries = async () => {
+      const series = await getSeries()
+      setSeries(series)
+    }
+    fetchSeries()
+  },[])
+
+  const getSeries = async () => {
+    const data = await seriesService.fetchList()
+    return data
   }
 
-  const addToList = (status, series) => {
-    seriesService.addToList(status, series)
-    getSeries()
+  const addToList = async (status, s) => {
+    let updatedSeries = series.filter(series => series.id !== s.id)
+    const newSeries = await seriesService.addToList(status, s)
+    updatedSeries = updatedSeries.concat(newSeries)
+    setSeries(updatedSeries)
   }
 
   const removeFromList = (s) => {
@@ -38,13 +46,13 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route path="/series/finished">
-            <SeriesList status='finished' get={getSeries} series={series} add={addToList} remove={removeFromList} />
+            <SeriesList status='finished' series={series} add={addToList} remove={removeFromList} />
           </Route>
           <Route path="/series/watching">
-            <SeriesList status='watching' get={getSeries} series={series} add={addToList} remove={removeFromList} />
+            <SeriesList status='watching' series={series} add={addToList} remove={removeFromList} />
           </Route>
           <Route path="/series/wishlist">
-            <SeriesList status='wishlist' get={getSeries} series={series} add={addToList} remove={removeFromList} />
+            <SeriesList status='wishlist' series={series} add={addToList} remove={removeFromList} />
           </Route>
           <Route path="/series/id/:id">
             <SeriesPage add={addToList} />

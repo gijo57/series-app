@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react'
 import Series from '../components/Series'
 
-const SeriesList = ({ status, get, series, add, remove }) => {
-    useEffect(() => {
-        get(status)
-    },[status])
-
+const SeriesList = ({ status, series, add, remove }) => {
     let title = ''
     if (status === 'finished') {
         title = 'Series you\'ve finished watching'
@@ -21,13 +17,12 @@ const SeriesList = ({ status, get, series, add, remove }) => {
         return (
             <div>
                 <h1>{title}</h1>
-                <div className='seriesList'>{series.map(s =>
+                <div className='seriesList'>{series.filter(s => s.list === status).map(s =>
                     <Series key={s.id}
                             status={status}
                             series={s}
                             add={add}
-                            remove={remove}
-                            get={get}/>)}
+                            remove={remove}/>)}
                 </div>       
             </div>
         )
