@@ -1,6 +1,7 @@
 const config = require('../utils/config')
 const seriesRouter = require('express').Router()
 const Series = require('../models/series')
+const User = require('../models/user')
 const axios = require('axios')
 
 const apiKey = config.API_KEY
@@ -46,6 +47,8 @@ seriesRouter.get('/api/s/:seriesId/season/:seasonId', async (req, res) =>{
 
 seriesRouter.post('/list', async (req, res) => {
     const { series, list } = req.body;
+    const user = await User.findById(body.userId)
+
     const listSeries = {
         original_name: series.original_name,
         genre_ids: series.genre_ids,
@@ -60,15 +63,18 @@ seriesRouter.post('/list', async (req, res) => {
         vote_average: series.vote_average,
         overview: series.overview,
         poster_path: series.poster_path,
-        list: list
+        list: list,
+        user: user._id
     }
     
     const query = { id:  series.id }
     const options = { upsert: true, new: true}
 
     const newSeries = await Series.findOneAndUpdate(query, listSeries, options)
-    res.json(newSeries)
+    user.series = user.series.concat(newSeries._id)
+    await user.save()
     
+    res.json(newSeries)
 })
 
 seriesRouter.delete('/list/:id', async (req, res) => {

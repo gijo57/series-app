@@ -4,6 +4,7 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const seriesRouter = require('./controllers/series')
+const usersRouter = require('./controllers/users')
 mongoose.set('useFindAndModify', false);
 
 mongoose
@@ -14,5 +15,6 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/series', seriesRouter)
+app.use('/api/users', usersRouter)
 
 module.exports = app
