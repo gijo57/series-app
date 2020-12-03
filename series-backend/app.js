@@ -1,5 +1,6 @@
 const config = require('./utils/config')
 const express = require('express')
+const helmet = require('helmet')
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -11,6 +12,7 @@ mongoose
     .connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(console.log('successfully connected to mongo'))
 
+app.use(helmet())
 app.use(cors())
 app.use(express.json())
 
