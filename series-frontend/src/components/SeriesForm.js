@@ -18,7 +18,7 @@ const SeriesForm = ({ add }) => {
     if (!series || series === null) {
         return (
             <div>
-                <form id='form' onSubmit={getSeries}>
+                <form id='seriesform' onSubmit={getSeries}>
                     Search series: <input id='title' type='text' value={title} name='title' onChange={handleTitleChange} />
                     <button type='submit'>Search</button>
                 </form>
@@ -28,7 +28,7 @@ const SeriesForm = ({ add }) => {
         const results = series.results.map(s => <Series key={s.id} series={s} add={add} />)
         return (
             <div>
-                <form id='form' onSubmit={getSeries}>
+                <form id='seriesform' onSubmit={getSeries}>
                     Search series: <input id='title' type='text' value={title} name='title' onChange={handleTitleChange} />
                     <button type='submit'>Search</button>
                 </form>

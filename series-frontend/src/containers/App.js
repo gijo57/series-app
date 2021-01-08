@@ -13,7 +13,7 @@ import {
 
 const App = () => {
   const [series, setSeries] = useState([])
-
+  
   useEffect(() => {
     const fetchSeries = async () => {
       const series = await getSeries()
